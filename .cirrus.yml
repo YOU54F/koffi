@@ -221,6 +221,7 @@ windows_task:
     nvm use 18.16.0
     node --version
     npm install --ignore-scripts
+    ls C:\Users\ContainerAdministrator\AppData\Local\Temp\cirrus-ci-build\node_modules\koffi\build\2.3.19\koffi_win32_x64
     node test.js
   # install_choco_script: |
   #   choco install --yes nvs cmake visualstudio2019buildtools
