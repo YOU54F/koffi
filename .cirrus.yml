@@ -199,8 +199,8 @@ windows_task:
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
-    # CIRRUS_SHELL: powershell
-    PATH: C:\ProgramData\chocolatey\lib\nvm\bin:${PATH}
+    CIRRUS_SHELL: powershell
+    # PATH: C:\ProgramData\chocolatey\lib\nvm\bin:${PATH}
     matrix:
       # - NODE_VERSION: 12
       # - NODE_VERSION: 14
@@ -210,7 +210,7 @@ windows_task:
       # - NODE_VERSION: 19
       # - NODE_VERSION: 20
   install_choco_script: |
-    choco install --yes nvm
+    choco install --yes nvm.portable
   download_ffi_script: bash script/download-libs.sh
   test_node_18_script: |
     ls ffi
