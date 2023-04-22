@@ -212,7 +212,7 @@ windows_task:
   install_choco_script: |
     choco install --yes nvs cmake visualstudio2019buildtools
   download_ffi_script: bash script/download-libs.sh
-  test_node_16_script: |
+  test_node_18_script: |
     refreshenv
     nvs add 18
     nvs use 18
