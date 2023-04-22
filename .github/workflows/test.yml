@@ -17,6 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - run: bash script/download-libs
+      - run: bash script/download-libs.sh
       - run: npm ci --ignore-scripts
       - run: node test.js
