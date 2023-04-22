@@ -216,7 +216,7 @@ windows_task:
     ls ffi
     ls ffi/win32-arm64
     ls ffi/win32-x64
-    refresh env
+    refreshenv
     nvm install 18
     nvm use 18
     node --version
