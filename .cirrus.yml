@@ -217,7 +217,7 @@ windows_task:
     nvs add 18
     nvs link 18
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
   # install_choco_script: |
   #   choco install --yes nvs cmake visualstudio2019buildtools
