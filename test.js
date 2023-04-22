@@ -2,6 +2,7 @@ console.log({ arch: process.arch, platform: process.platform });
 const koffi = require('koffi');
 const path = require('path');
 const libPath = path.join(
+  __dirname,
   'ffi',
   `${process.platform}-${process.arch}`,
   `${process.platform !== 'win32' ? 'lib' : ''}pact_ffi.${
@@ -12,7 +13,7 @@ const libPath = path.join(
       : 'so'
   }`
 );
-console.log(libPath);
+console.log("libPath",libPath);
 const lib = koffi.load(libPath);
 const version = lib.func('const char *pactffi_version(void)');
 console.log(`Hello Ffi!\n ${version()}`);
