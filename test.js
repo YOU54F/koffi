@@ -1,4 +1,5 @@
 console.log({ arch: process.arch, platform: process.platform });
+const path = require('path');
 
 const libPath = path.join(
   __dirname,
@@ -16,7 +17,6 @@ console.log("libPath",libPath);
 console.log('trying to load koffi')
 const koffi = require('koffi');
 console.log('koffi loaded')
-const path = require('path');
 const lib = koffi.load(libPath);
 const version = lib.func('const char *pactffi_version(void)');
 console.log(`Hello Ffi!\n ${version()}`);
