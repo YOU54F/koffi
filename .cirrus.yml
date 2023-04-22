@@ -195,7 +195,7 @@ mac_task:
 
 
 windows_task:
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci(win).*'
+  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(win\).*'
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
