@@ -3,11 +3,11 @@ BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
     - uname -am
   test_script: |
     bash script/download-libs.sh
-    npm install
+    npm install --ignore-scripts
     node test.js
 
 linux_amd64_task:  
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(linux\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(linux\).*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -25,7 +25,7 @@ linux_amd64_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 linux_arm64_task: 
-  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -44,7 +44,7 @@ linux_arm64_task:
 
 
 mac_task:
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(mac\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(mac\).*'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
   env:
@@ -72,7 +72,7 @@ mac_task:
   #   nvs use 12
   #   file $(which node) | grep -e 'arm64'
   #   node --version
-  #   npm install
+  #   npm install --ignore-scripts
   #   node test.js
   # test_node_14_script: |
   #   rm -rf node_modules
@@ -81,7 +81,7 @@ mac_task:
   #   nvs use 14
   #   file $(which node) | grep -e 'arm64'
   #   node --version
-  #   npm install
+  #   npm install --ignore-scripts
   #   node test.js
   # test_node_15_script: |
   #   rm -rf node_modules
@@ -90,7 +90,7 @@ mac_task:
   #   nvs use 15
   #   file $(which node) | grep -e 'arm64'
   #   node --version
-  #   npm install
+  #   npm install --ignore-scripts
   #   node test.js
   test_node_16_script: |
     rm -rf node_modules
@@ -99,7 +99,7 @@ mac_task:
     nvs use 16
     file $(which node) | grep -e 'arm64'
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
   test_node_18_script: |
     rm -rf node_modules
@@ -108,7 +108,7 @@ mac_task:
     nvs use 18
     file $(which node) | grep -e 'arm64'
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
   test_node_19_script: |
     rm -rf node_modules
@@ -117,7 +117,7 @@ mac_task:
     nvs use 19
     file $(which node) | grep -e 'arm64'
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
   test_node_20_script: |
     rm -rf node_modules
@@ -126,7 +126,7 @@ mac_task:
     nvs use 20
     file $(which node) | grep -e 'arm64'
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
   install_rosetta_script: softwareupdate --install-rosetta --agree-to-license
   test_node_12_x64_script: |
@@ -136,7 +136,7 @@ mac_task:
     nvs use 12/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_14_x64_script: |
     rm -rf node_modules
@@ -145,7 +145,7 @@ mac_task:
     nvs use 14/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_15_x64_script: |
     rm -rf node_modules
@@ -154,7 +154,7 @@ mac_task:
     nvs use 15/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_16_x64_script: |
     rm -rf node_modules
@@ -163,7 +163,7 @@ mac_task:
     nvs use 16/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_18_x64_script: |
     rm -rf node_modules
@@ -172,7 +172,7 @@ mac_task:
     nvs use 18/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_19_x64_script: |
     rm -rf node_modules
@@ -181,7 +181,7 @@ mac_task:
     nvs use 19/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
   test_node_20_x64_script: |
     rm -rf node_modules
@@ -190,12 +190,12 @@ mac_task:
     nvs use 20/x64
     file $(which node) | grep -e 'x64'
     node --version
-    npm install
+    npm install --ignore-scripts
     arch -x86_64 node test.js
 
 
 windows_task:
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(win\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(win\).*'
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
@@ -213,6 +213,9 @@ windows_task:
     choco install --yes nvs
   download_ffi_script: bash script/download-libs.sh
   test_node_18_script: |
+    ls ffi
+    ls ffi/win32-arm64
+    ls ffi/win32-x64
     refreshenv
     nvs add 18
     nvs link 18
@@ -228,11 +231,11 @@ windows_task:
     nvs add 16
     nvs use 16
     node --version
-    npm install
+    npm install --ignore-scripts
     node test.js
 
 freebsd_task:
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(freebsd\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(freebsd\).*'
   freebsd_instance:
     image_family: freebsd-13-0
   env:

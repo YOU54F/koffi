@@ -1,6 +1,6 @@
+console.log({ arch: process.arch, platform: process.platform });
 const koffi = require('koffi');
 const path = require('path');
-console.log({ arch: process.arch, platform: process.platform });
 const lib = koffi.load(
   path.join(
     'ffi',
