@@ -214,6 +214,16 @@ windows_task:
   download_ffi_script: bash script/download-libs.sh
   test_node_16_script: |
     refreshenv
+    nvs add 18
+    nvs use 18
+    node --version
+    npm install
+    node test.js
+  # install_choco_script: |
+  #   choco install --yes nvs cmake visualstudio2019buildtools
+  # download_ffi_script: bash script/download-libs.sh
+  test_node_16_script: |
+    refreshenv
     nvs add 16
     nvs use 16
     node --version
