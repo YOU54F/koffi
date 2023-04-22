@@ -209,13 +209,13 @@ windows_task:
       # - NODE_VERSION: 18
       # - NODE_VERSION: 19
       # - NODE_VERSION: 20
-  # install_choco_script: |
-  #   choco install --yes nvs cmake visualstudio2019buildtools
+  install_choco_script: |
+    choco install --yes nvs
   download_ffi_script: bash script/download-libs.sh
   test_node_18_script: |
     refreshenv
     nvs add 18
-    nvs use 18
+    nvs link 18
     node --version
     npm install
     node test.js
