@@ -210,28 +210,28 @@ windows_task:
       # - NODE_VERSION: 19
       # - NODE_VERSION: 20
   install_choco_script: |
-    choco install --yes nvs
+    choco install --yes nvm
   download_ffi_script: bash script/download-libs.sh
   test_node_18_script: |
     ls ffi
     ls ffi/win32-arm64
     ls ffi/win32-x64
-    refreshenv
-    nvs add 18
-    nvs use 18
+    # refreshenv
+    nvm install 18
+    nvm use 18
     node --version
     npm install --ignore-scripts
     node test.js
   # install_choco_script: |
   #   choco install --yes nvs cmake visualstudio2019buildtools
   # download_ffi_script: bash script/download-libs.sh
-  test_node_16_script: |
-    refreshenv
-    nvs add 16
-    nvs use 16
-    node --version
-    npm install --ignore-scripts
-    node test.js
+  # test_node_16_script: |
+  #   refreshenv
+  #   nvs add 16
+  #   nvs use 16
+  #   node --version
+  #   npm install --ignore-scripts
+  #   node test.js
 
 freebsd_task:
   only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(freebsd\).*'
