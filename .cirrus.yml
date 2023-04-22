@@ -232,7 +232,7 @@ freebsd_task:
       - NODE_VERSION: 20
   install_script: |
     pkg update --yes && pkg upgrade --yes 
-    pkg install --yes  curl
+    pkg install --yes curl git
     git clone https://github.com/jasongin/nvs "$NVS_HOME"
     . "$NVS_HOME/nvs.sh" install
     nvs add ${NODE_VERSION}
