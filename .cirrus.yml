@@ -210,7 +210,7 @@ windows_task:
       # - NODE_VERSION: 19
       # - NODE_VERSION: 20
   install_choco_script: |
-    choco install --yes nvs cmake
+    choco install --yes nvs cmake visualstudio2019buildtools
   download_ffi_script: bash script/download-libs.sh
   test_node_16_script: |
     refreshenv
