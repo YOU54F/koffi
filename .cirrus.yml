@@ -199,7 +199,7 @@ windows_task:
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
-    CIRRUS_SHELL: powershell
+    # CIRRUS_SHELL: powershell
     # PATH: C:\ProgramData\chocolatey\lib\nvm\bin:${PATH}
     matrix:
       # - NODE_VERSION: 12
@@ -216,6 +216,7 @@ windows_task:
     ls ffi
     ls ffi/win32-arm64
     ls ffi/win32-x64
+    refreshenv
     nvm install 18
     nvm use 18
     node --version
