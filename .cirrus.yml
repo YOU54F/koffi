@@ -6,7 +6,8 @@ BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
     npm install
     node test.js
 
-linux_amd64_task: 
+linux_amd64_task:  
+  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -24,6 +25,7 @@ linux_amd64_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 linux_arm64_task: 
+  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -42,6 +44,7 @@ linux_arm64_task:
 
 
 mac_task:
+  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(mac)\].*'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
   env:
@@ -192,6 +195,7 @@ mac_task:
 
 
 windows_task:
+  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(win)\].*'
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
@@ -205,12 +209,14 @@ windows_task:
       - NODE_VERSION: 20
   install_script: |
     choco install --yes nvs
+    refreshenv
     nvs add ${NODE_VERSION}
     nvs use ${NODE_VERSION}
     node --version
   << : *BUILD_TEST_TASK_TEMPLATE
 
 freebsd_task:
+  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(freebsd)\].*'
   freebsd_instance:
     image_family: freebsd-13-0
   env:
