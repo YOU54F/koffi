@@ -216,6 +216,7 @@ windows_task:
     refreshenv
     nvs add 18
     nvs link 18
+    refreshenv
     node --version
     npm install --ignore-scripts
     node test.js
