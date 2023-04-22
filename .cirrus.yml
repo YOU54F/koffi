@@ -224,13 +224,13 @@ freebsd_task:
   env:
     NVS_HOME: ${HOME}/.nvs
     matrix:
-      # # - NODE_VERSION: 12
-      # # - NODE_VERSION: 14
-      # # - NODE_VERSION: 15
-      # - NODE_VERSION: 16
-      # # - NODE_VERSION: 18
-      # # - NODE_VERSION: 19
-      # # - NODE_VERSION: 20
+      # - NODE_VERSION: 12
+      # - NODE_VERSION: 14
+      # - NODE_VERSION: 15
+      - NODE_VERSION: 16
+      # - NODE_VERSION: 18
+      # - NODE_VERSION: 19
+      # - NODE_VERSION: 20
   install_script: |
     pkg update --yes && pkg upgrade --yes 
     pkg install --yes curl git
