@@ -50,14 +50,6 @@ mac_task:
   env:
     NVS_HOME: ${HOME}/.nvs
     PATH: ${NVS_HOME}:${PATH}
-    # matrix:
-    #   # - NODE_VERSION: 12
-    #   # - NODE_VERSION: 14
-    #   # - NODE_VERSION: 15
-    #   # - NODE_VERSION: 16
-    #   - NODE_VERSION: 20
-    #   # - NODE_VERSION: 19
-    #   # - NODE_VERSION: 20
   install nvm_script: |
     git clone https://github.com/jasongin/nvs "$NVS_HOME"
     . "$NVS_HOME/nvs.sh" install
@@ -65,33 +57,6 @@ mac_task:
     chmod u+x script/**/*.sh
     chmod u+x script/*.sh
     script/download-libs.sh
-  # test_node_12_script: |
-  #   rm -rf node_modules
-  #   . "$NVS_HOME/nvs.sh"
-  #   nvs add 12
-  #   nvs use 12
-  #   file $(which node) | grep -e 'arm64'
-  #   node --version
-  #   npm install --ignore-scripts
-  #   node test.js
-  # test_node_14_script: |
-  #   rm -rf node_modules
-  #   . "$NVS_HOME/nvs.sh"
-  #   nvs add 14
-  #   nvs use 14
-  #   file $(which node) | grep -e 'arm64'
-  #   node --version
-  #   npm install --ignore-scripts
-  #   node test.js
-  # test_node_15_script: |
-  #   rm -rf node_modules
-  #   . "$NVS_HOME/nvs.sh"
-  #   nvs add 15
-  #   nvs use 15
-  #   file $(which node) | grep -e 'arm64'
-  #   node --version
-  #   npm install --ignore-scripts
-  #   node test.js
   test_node_16_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -194,6 +159,10 @@ mac_task:
     arch -x86_64 node test.js
 
 
+## the following arent currently working
+## x86_64 windows working on GH actions
+## so it is something with nvm/nvs setup I think
+
 windows_task:
   only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(win\).*'
   windows_container:
@@ -223,16 +192,6 @@ windows_task:
     npm install --ignore-scripts
     ls C:\Users\ContainerAdministrator\AppData\Local\Temp\cirrus-ci-build\node_modules\koffi\build\2.3.19\koffi_win32_x64
     node test.js
-  # install_choco_script: |
-  #   choco install --yes nvs cmake visualstudio2019buildtools
-  # download_ffi_script: bash script/download-libs.sh
-  # test_node_16_script: |
-  #   refreshenv
-  #   nvs add 16
-  #   nvs use 16
-  #   node --version
-  #   npm install --ignore-scripts
-  #   node test.js
 
 freebsd_task:
   only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(freebsd\).*'
