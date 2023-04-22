@@ -217,8 +217,8 @@ windows_task:
     ls ffi/win32-arm64
     ls ffi/win32-x64
     refreshenv
-    nvm install 18
-    nvm use 18
+    nvm install 18.16.0
+    nvm use 18.16.0
     node --version
     npm install --ignore-scripts
     node test.js
