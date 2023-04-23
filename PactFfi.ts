@@ -16,14 +16,6 @@ import koffi from 'koffi';
 const lib = koffi.load(libPath);
 export const PactFfiLib = () => {
   return  {
-  malloc: lib.func("malloc", "string", ["size_t"]),
-  calloc: lib.func("calloc", "string", ["size_t", "size_t"]),
-  realloc: lib.func("realloc", "string", ["string", "size_t"]),
-  free: lib.func("free", "void", ["string"]),
-  posix_memalign: lib.func("posix_memalign", "int32", ["string", "size_t", "size_t"]),
-  abort: lib.func("abort", "void", []),
-  getenv: lib.func("getenv", "string", ["string"]),
-  realpath: lib.func("realpath", "string", ["string", "string"]),
   pactffi_version: lib.func("pactffi_version", "string", []),
   pactffi_init: lib.func("pactffi_init", "void", ["string"]),
   pactffi_init_with_log_level: lib.func("pactffi_init_with_log_level", "void", ["string"]),
