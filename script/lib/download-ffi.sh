@@ -104,7 +104,7 @@ download_ffi "osx-aarch64-apple-darwin.dylib.gz" "lib" "darwin-arm64/libpact_ffi
 # download_ffi "freebsd-x86.so.gz" "lib" "freebsd-ia32/libpact_ffi.so.gz"
 # download_ffi "freebsd-x86_64.so.gz" "lib" "freebsd-x64/libpact_ffi.so.gz"
 
-download_ffi "linux-x86.so.gz" "lib" "linux-ia32/libpact_ffi.so.gz"
+# download_ffi "linux-x86.so.gz" "lib" "linux-ia32/libpact_ffi.so.gz"
 download_ffi "linux-x86_64.so.gz" "lib" "linux-x64/libpact_ffi.so.gz"
 download_ffi "linux-aarch64.so.gz" "lib" "linux-arm64/libpact_ffi.so.gz"
 # download_ffi "linux-arm7.so.gz" "lib" "linux-arm32hf/libpact_ffi.so.gz"
@@ -113,7 +113,7 @@ download_ffi "linux-aarch64.so.gz" "lib" "linux-arm64/libpact_ffi.so.gz"
 # download_ffi "openbsd-x86.so.gz" "lib" "openbsd-ia32/libpact_ffi.so.gz"
 # download_ffi "openbsd-x86_64.so.gz" "lib" "openbsd-x64/libpact_ffi.so.gz"
 
-download_ffi "windows-x86.dll.gz" "" "win32-ia32/pact_ffi.dll.gz"
+# download_ffi "windows-x86.dll.gz" "" "win32-ia32/pact_ffi.dll.gz"
 download_ffi "windows-x86_64.dll.gz" "" "win32-x64/pact_ffi.dll.gz"
 download_ffi "windows-aarch64.dll.gz" "" "win32-arm64/pact_ffi.dll.gz"
 # Write readme in the ffi folder
