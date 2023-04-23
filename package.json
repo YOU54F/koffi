@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "compile": "tsc",
+    "test": "node PactFfi.js"
+  },
   "dependencies": {
     "koffi": "^2.3.19"
   },

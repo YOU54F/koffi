@@ -23,4 +23,4 @@ jobs:
           architecture: ${{ matrix.architecture }}
       - run: bash script/download-libs.sh
       - run: npm install --ignore-scripts
-      - run: node test.js
+      - run: npm run compile && npm test

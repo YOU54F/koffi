@@ -8,4 +8,4 @@ COPY FFI_VERSION .
 COPY test.js /app
 RUN script/download-libs.sh
 RUN npm install
-CMD ["sh","-c","node test.js"]
+CMD ["sh","-c","npm run compile && npm test"]

@@ -4,10 +4,10 @@ BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
   test_script: |
     bash script/download-libs.sh
     npm install --ignore-scripts
-    node test.js
+    npm run compile && npm test
 
 linux_amd64_task:  
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(linux\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(linux\).*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -25,7 +25,7 @@ linux_amd64_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 linux_arm64_task: 
-  only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ '.*\[ci(linux)\].*'
   env:
     matrix:
       - IMAGE: node:12-slim
@@ -44,7 +44,7 @@ linux_arm64_task:
 
 
 mac_task:
-  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(mac\).*'
+  # only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(mac\).*'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
   env:
@@ -65,7 +65,7 @@ mac_task:
     file $(which node) | grep -e 'arm64'
     node --version
     npm install --ignore-scripts
-    node test.js
+    npm run compile && npm test
   test_node_18_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -74,7 +74,7 @@ mac_task:
     file $(which node) | grep -e 'arm64'
     node --version
     npm install --ignore-scripts
-    node test.js
+    npm run compile && npm test
   test_node_19_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -83,7 +83,7 @@ mac_task:
     file $(which node) | grep -e 'arm64'
     node --version
     npm install --ignore-scripts
-    node test.js
+    npm run compile && npm test
   test_node_20_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -92,7 +92,7 @@ mac_task:
     file $(which node) | grep -e 'arm64'
     node --version
     npm install --ignore-scripts
-    node test.js
+    npm run compile && npm test
   install_rosetta_script: softwareupdate --install-rosetta --agree-to-license
   test_node_12_x64_script: |
     rm -rf node_modules
@@ -102,7 +102,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_14_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -111,7 +111,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_15_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -120,7 +120,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_16_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -129,7 +129,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_18_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -138,7 +138,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_19_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -147,7 +147,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
   test_node_20_x64_script: |
     rm -rf node_modules
     . "$NVS_HOME/nvs.sh"
@@ -156,7 +156,7 @@ mac_task:
     file $(which node) | grep -e 'x64'
     node --version
     npm install --ignore-scripts
-    arch -x86_64 node test.js
+    arch -x86_64 npm run compile && npm test
 
 
 ## the following arent currently working
@@ -191,7 +191,7 @@ windows_task:
     node --version
     npm install --ignore-scripts
     ls C:\Users\ContainerAdministrator\AppData\Local\Temp\cirrus-ci-build\node_modules\koffi\build\2.3.19\koffi_win32_x64
-    node test.js
+    npm run compile && npm test
 
 freebsd_task:
   only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(freebsd\).*'
