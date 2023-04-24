@@ -8,7 +8,7 @@ PactFfiLib().pactffi_logger_attach_sink(
 );
 PactFfiLib().pactffi_logger_apply();
 PactFfiLib().pactffi_log_message(
-  'pact-bun',
+  'pact-koffi',
   'INFO',
   `hello from ffi version: ${PactFfiLib().pactffi_version()}`
 );
@@ -17,7 +17,7 @@ const PactTestHttp = () => {
   console.log('🚀 Pact Mock Server Test - HTTP 🚀');
 
   const pact = {
-    consumer: { name: 'pact-bun' },
+    consumer: { name: 'pact-koffi' },
     interactions: [
       {
         description: 'a retrieve Mallory request',
@@ -34,7 +34,7 @@ const PactTestHttp = () => {
       }
     ],
     metadata: {
-      'pact-bun': { ffi: PactFfiLib().pactffi_version(), version: '1.0.0' },
+      'pact-koffi': { ffi: PactFfiLib().pactffi_version(), version: '1.0.0' },
       pactRust: { mockserver: '0.9.5', models: '1.0.0' },
       pactSpecification: { version: '1.0.0' }
     },
@@ -46,14 +46,14 @@ const PactTestHttp = () => {
     0
   );
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `mock_server_port: ${mock_server_port}`
   );
 
   const matched = PactFfiLib().pactffi_mock_server_matched(mock_server_port);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_mock_server_matched: ${matched}`
   );
@@ -72,7 +72,7 @@ const PactTestHttp = () => {
       0
     );
     PactFfiLib().pactffi_log_message(
-      'pact-bun',
+      'pact-koffi',
       'INFO',
       `pactffi_write_pact_file: ${res_write_pact}`
     );
@@ -81,7 +81,7 @@ const PactTestHttp = () => {
   const pactffi_cleanup_mock_server_result =
     PactFfiLib().pactffi_cleanup_mock_server(mock_server_port);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_cleanup_mock_server: ${pactffi_cleanup_mock_server_result}`
   );

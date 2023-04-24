@@ -8,7 +8,7 @@ PactFfiLib().pactffi_logger_attach_sink(
 );
 PactFfiLib().pactffi_logger_apply();
 PactFfiLib().pactffi_log_message(
-  'pact-bun',
+  'pact-koffi',
   'INFO',
   `hello from ffi version: ${PactFfiLib().pactffi_version()}`
 );
@@ -33,14 +33,14 @@ const PactTestGrpc = async () => {
   console.log('pact');
   console.log(pact);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_new_pact: ${pact}`
   );
   const pactffi_with_pact_metadata_res =
     PactFfiLib().pactffi_with_pact_metadata(
       pact,
-      'pact-bun',
+      'pact-koffi',
       'ffi',
       PactFfiLib().pactffi_version()
     );
@@ -53,7 +53,7 @@ const PactTestGrpc = async () => {
   console.log('message_pact');
   console.log(message_pact);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_new_sync_message_interaction: ${message_pact}`
   );
@@ -95,7 +95,7 @@ const PactTestGrpc = async () => {
   console.log('mock_server_port');
   console.log(mock_server_port);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_create_mock_server_for_transport: ${mock_server_port}`
   );
@@ -106,7 +106,7 @@ const PactTestGrpc = async () => {
 
   const matched = PactFfiLib().pactffi_mock_server_matched(mock_server_port);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_mock_server_matched: ${matched}`
   );
@@ -126,7 +126,7 @@ const PactTestGrpc = async () => {
       0
     );
     PactFfiLib().pactffi_log_message(
-      'pact-bun',
+      'pact-koffi',
       'INFO',
       `pactffi_write_pact_file: ${res_write_pact}`
     );
@@ -135,7 +135,7 @@ const PactTestGrpc = async () => {
   const pactffi_cleanup_mock_server_result =
     PactFfiLib().pactffi_cleanup_mock_server(mock_server_port);
   PactFfiLib().pactffi_log_message(
-    'pact-bun',
+    'pact-koffi',
     'INFO',
     `pactffi_cleanup_mock_server: ${pactffi_cleanup_mock_server_result}`
   );
