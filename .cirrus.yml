@@ -22,8 +22,8 @@ linux_amd64_task:
     architecture: amd64
   install_script: 
     # https://unix.stackexchange.com/a/743865 workaround for broken 12/15 image updates
-    - if [ "$IMAGE" = "node:12-slim ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
-    - if [ "$IMAGE" = "node:15-slim ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
+    - if [ "$IMAGE" = "node:12-slim" ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
+    - if [ "$IMAGE" = "node:15-slim"] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
     - apt update --yes && apt install --yes curl
   << : *BUILD_TEST_TASK_TEMPLATE
 
@@ -43,8 +43,8 @@ linux_arm64_task:
     architecture: arm64
   install_script:
     # https://unix.stackexchange.com/a/743865 workaround for broken 12/15 image updates
-    - if [ "$IMAGE" = "node:12-slim ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
-    - if [ "$IMAGE" = "node:15-slim ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
+    - if [ "$IMAGE" = "node:12-slim" ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
+    - if [ "$IMAGE" = "node:15-slim" ] ; then  echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list ; else echo 'not switching to archive'; fi
     - apt update --yes && apt install --yes curl
   << : *BUILD_TEST_TASK_TEMPLATE
 
