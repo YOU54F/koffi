@@ -224,7 +224,7 @@ export const PactKoffi = () => {
     syncMessageGetProviderState: lib.func("pactffi_sync_message_get_provider_state", koffi.pointer("ProviderState"), [koffi.pointer("SynchronousMessage"), "uint32"]),
     syncMessageGetProviderStateIter: lib.func("pactffi_sync_message_get_provider_state_iter", koffi.pointer("ProviderStateIterator"), [koffi.pointer("SynchronousMessage")]),
     stringDelete: lib.func("pactffi_string_delete", "void", ["string"]),
-    createMockServer: lib.func("pactffi_create_mock_server", "int32", ["string", "string", "uint8"]),
+    createMockServer: lib.func("pactffi_create_mock_server", "int32_t", ["string", "string", "bool"]),
     getTlsCaCertificate: lib.func("pactffi_get_tls_ca_certificate", "string", []),
     createMockServerForPact: lib.func("pactffi_create_mock_server_for_pact", "int32", ["uint16", "string", "uint8"]),
     createMockServerForTransport: lib.func("pactffi_create_mock_server_for_transport", "int32", ["uint16", "string", "uint16", "string", "string"]),
