@@ -13,7 +13,15 @@ __dirname,
 }`);
 console.log('libPath', libPath);
 import koffi from 'koffi';
+import {PactFfi} from './types';
 const lib = koffi.load(libPath);
+
+// const VerifierHandle = koffi.struct('VerifierHandle', {
+//   tv_sec: 'unsigned int',
+// });
+
+const VerifierHandle = koffi.opaque('VerifierHandle');
+
 export const PactKoffi = () => {
   return  {
     version: lib.func("pactffi_version", "string", []),
@@ -238,10 +246,10 @@ export const PactKoffi = () => {
     freePactHandle: lib.func("pactffi_free_pact_handle", "uint32", ["uint16"]),
     freeMessagePactHandle: lib.func("pactffi_free_message_pact_handle", "uint32", ["uint16"]),
     verify: lib.func("pactffi_verify", "int32", ["string"]),
-    verifierNew: lib.func("pactffi_verifier_new", "string", []),
-    verifierNewForApplication: lib.func("pactffi_verifier_new_for_application", "string", ["string", "string"]),
-    verifierShutdown: lib.func("pactffi_verifier_shutdown", "void", ["string"]),
-    verifierSetProviderInfo: lib.func("pactffi_verifier_set_provider_info", "void", ["string", "string", "string", "string", "uint16", "string"]),
+    verifierNew: lib.func("pactffi_verifier_new", koffi.pointer(VerifierHandle), []),
+    verifierNewForApplication: lib.func("pactffi_verifier_new_for_application", koffi.pointer(VerifierHandle), ["string", "string"]),
+    verifierShutdown: lib.func("pactffi_verifier_shutdown", "void", [koffi.pointer(VerifierHandle)]),
+    verifierSetProviderInfo: lib.func("pactffi_verifier_set_provider_info", "void", [koffi.pointer(VerifierHandle), "string", "string", "string", "uint16", "string"]),
     verifierAddProviderTransport: lib.func("pactffi_verifier_add_provider_transport", "void", ["string", "string", "uint16", "string", "string"]),
     verifierSetFilterInfo: lib.func("pactffi_verifier_set_filter_info", "void", ["string", "string", "string", "uint8"]),
     verifierSetProviderState: lib.func("pactffi_verifier_set_provider_state", "void", ["string", "string", "uint8", "uint8"]),
@@ -272,6 +280,6 @@ export const PactKoffi = () => {
     matchesBoolValue: lib.func("pactffi_matches_bool_value", "string", ["string", "uint8", "uint8", "uint8"]),
     matchesBinaryValue: lib.func("pactffi_matches_binary_value", "string", ["string", "string", "uint64", "string", "uint64", "uint8"]),
     matchesJsonValue: lib.func("pactffi_matches_json_value", "string", ["string", "string", "string", "uint8"])  
-    }
-  }
+    } as unknown as typeof PactFfi
+  } 
 console.log(`Hello Ffi!\n ${PactKoffi().version()}`);  
