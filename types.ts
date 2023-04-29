@@ -115,7 +115,7 @@ export namespace PactFfi {
   export type SynchronousMessage = string;
 
   /** /data/input/pact.h#L383 */
-  export type VerifierHandle = number;
+  export type VerifierHandle = string;
 
   /** /data/input/pact.h#L397 */
   export type GeneratorKeyValuePair = string;
@@ -732,13 +732,13 @@ export namespace PactFfi {
     export declare function stringDelete(string: string): void;
   
     /** /data/input/pact.h#L3003 */
-    export declare function createMockServer(pact_str: string, addr_str: string, tls: number): number;
+    export declare function createMockServer(pact_str: string, addr_str: string, tls: boolean): number;
   
     /** /data/input/pact.h#L3017 */
     export declare function getTlsCaCertificate(): string;
   
     /** /data/input/pact.h#L3043 */
-    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: number): number;
+    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: boolean): number;
   
     /** /data/input/pact.h#L3079 */
     export declare function createMockServerForTransport(pact: PactFfi.PactHandle, addr: string, port: number, transport: string, transport_config: string|null): number;
