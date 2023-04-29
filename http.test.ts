@@ -43,7 +43,7 @@ const PactTestHttp = () => {
   const mock_server_port = PactKoffi().createMockServer(
     JSON.stringify(pact),
     '127.0.0.1:4432',
-    0
+    false
   );
   PactKoffi().logMessage(
     'pact-koffi',

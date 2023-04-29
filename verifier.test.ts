@@ -5,7 +5,7 @@ const pact = PactKoffi()
 pact.loggerInit();
 pact.loggerAttachSink(
   'stdout',
-  PactFfi.LevelFilterValue.LevelFilter_Trace
+  Number(PactFfi.LevelFilterValue.LevelFilter_Trace)
 );
 pact.loggerApply();
 pact.logMessage(

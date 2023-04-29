@@ -732,31 +732,31 @@ export namespace PactFfi {
     export declare function stringDelete(string: string): void;
   
     /** /data/input/pact.h#L3003 */
-    export declare function createMockServer(pact_str: string, addr_str: string, tls: string): string;
+    export declare function createMockServer(pact_str: string, addr_str: string, tls: boolean): number;
   
     /** /data/input/pact.h#L3017 */
     export declare function getTlsCaCertificate(): string;
   
     /** /data/input/pact.h#L3043 */
-    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: string): string;
+    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: number): number;
   
     /** /data/input/pact.h#L3079 */
-    export declare function createMockServerForTransport(pact: PactFfi.PactHandle, addr: string, port: string, transport: string, transport_config: string): string;
+    export declare function createMockServerForTransport(pact: PactFfi.PactHandle, addr: string, port: number, transport: string, transport_config: string|null): number;
   
     /** /data/input/pact.h#L3091 */
-    export declare function mockServerMatched(mock_server_port: string): string;
+    export declare function mockServerMatched(mock_server_port: number): string;
   
     /** /data/input/pact.h#L3108 */
-    export declare function mockServerMismatches(mock_server_port: string): string;
+    export declare function mockServerMismatches(mock_server_port: number): string;
   
     /** /data/input/pact.h#L3115 */
-    export declare function cleanupMockServer(mock_server_port: string): string;
+    export declare function cleanupMockServer(mock_server_port: number): string;
   
     /** /data/input/pact.h#L3138 */
-    export declare function writePactFile(mock_server_port: string, directory: string, overwrite: string): string;
+    export declare function writePactFile(mock_server_port: number, directory: string, overwrite: number): number;
   
     /** /data/input/pact.h#L3147 */
-    export declare function mockServerLogs(mock_server_port: string): string;
+    export declare function mockServerLogs(mock_server_port: number): string;
   
     /** /data/input/pact.h#L3159 */
     export declare function generateDatetimeString(format: string): StringResult;
@@ -861,13 +861,13 @@ export namespace PactFfi {
     export declare function messageReify(message_handle: PactFfi.MessageHandle): string;
   
     /** /data/input/pact.h#L3698 */
-    export declare function writeMessagePactFile(pact: PactFfi.MessagePactHandle, directory: string, overwrite: string): string;
+    export declare function writeMessagePactFile(pact: PactFfi.MessagePactHandle, directory: string, overwrite: string): number;
   
     /** /data/input/pact.h#L3710 */
     export declare function withMessagePactMetadata(pact: PactFfi.MessagePactHandle, namespace_: string, name: string, value: string): void;
   
     /** /data/input/pact.h#L3740 */
-    export declare function pactHandleWriteFile(pact: PactFfi.PactHandle, directory: string, overwrite: string): string;
+    export declare function pactHandleWriteFile(pact: PactFfi.PactHandle, directory: string, overwrite: string): number;
   
     /** /data/input/pact.h#L3749 */
     export declare function newAsyncMessage(pact: PactFfi.PactHandle, description: string): PactFfi.MessageHandle;
@@ -879,7 +879,7 @@ export namespace PactFfi {
     export declare function freeMessagePactHandle(pact: PactFfi.MessagePactHandle): string;
   
     /** /data/input/pact.h#L3795 */
-    export declare function verify(args: string): string;
+    export declare function verify(args: string): number;
   
     /** /data/input/pact.h#L3812 */
     export declare function verifierNew(): VerifierHandle;
@@ -894,7 +894,7 @@ export namespace PactFfi {
     export declare function verifierSetProviderInfo(handle: VerifierHandle, name: string, scheme: string, host: string, port: number, path: string): void;
   
     /** /data/input/pact.h#L3864 */
-    export declare function verifierAddProviderTransport(handle: VerifierHandle, protocol: string, port: string, path: string, scheme: string): void;
+    export declare function verifierAddProviderTransport(handle: VerifierHandle, protocol: string, port: number, path: string, scheme: string): void;
   
     /** /data/input/pact.h#L3883 */
     export declare function verifierSetFilterInfo(handle: VerifierHandle, filter_description: string, filter_state: string, filter_no_state: string): void;
