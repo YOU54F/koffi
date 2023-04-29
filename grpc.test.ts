@@ -1,16 +1,16 @@
-import { PactFfiLib } from './PactFfi';
+import { PactKoffi } from './PactKoffi';
 import { PactFfi } from './types';
 
-PactFfiLib().pactffi_logger_init();
-PactFfiLib().pactffi_logger_attach_sink(
+PactKoffi().loggerInit();
+PactKoffi().loggerAttachSink(
   'stdout',
   PactFfi.LevelFilterValue.LevelFilter_Info
 );
-PactFfiLib().pactffi_logger_apply();
-PactFfiLib().pactffi_log_message(
+PactKoffi().loggerApply();
+PactKoffi().logMessage(
   'pact-koffi',
   'INFO',
-  `hello from ffi version: ${PactFfiLib().pactffi_version()}`
+  `hello from ffi version: ${PactKoffi().version()}`
 );
 const PactTestGrpc = async () => {
   console.log('🚀 Running Pact Protobuf Plugin Test with gRPC 🚀');
@@ -26,66 +26,66 @@ const PactTestGrpc = async () => {
 
   // Setup pact for testing
 
-  const pact = PactFfiLib().pactffi_new_pact(
+  const pact = PactKoffi().newPact(
     'grpc-consumer-bun',
     'area-calculator-provider'
   );
   console.log('pact');
   console.log(pact);
-  PactFfiLib().pactffi_log_message(
+  PactKoffi().logMessage(
     'pact-koffi',
     'INFO',
-    `pactffi_new_pact: ${pact}`
+    `new_pact: ${pact}`
   );
-  const pactffi_with_pact_metadata_res =
-    PactFfiLib().pactffi_with_pact_metadata(
+  const with_pact_metadata_res =
+    PactKoffi().withPactMetadata(
       pact,
       'pact-koffi',
       'ffi',
-      PactFfiLib().pactffi_version()
+      PactKoffi().version()
     );
-  console.log('pactffi_with_pact_metadata_res');
-  console.log(pactffi_with_pact_metadata_res);
-  const message_pact = PactFfiLib().pactffi_new_sync_message_interaction(
+  console.log('with_pact_metadata_res');
+  console.log(with_pact_metadata_res);
+  const message_pact = PactKoffi().newSyncMessageInteraction(
     pact,
     'A gRPC calculateOne request'
   );
   console.log('message_pact');
   console.log(message_pact);
-  PactFfiLib().pactffi_log_message(
+  PactKoffi().logMessage(
     'pact-koffi',
     'INFO',
-    `pactffi_new_sync_message_interaction: ${message_pact}`
+    `new_sync_message_interaction: ${message_pact}`
   );
-  console.log('try pactffi_with_specification');
-  const pactffi_with_specification_res =
-    PactFfiLib().pactffi_with_specification(
+  console.log('try with_specification');
+  const with_specification_res =
+    PactKoffi().withSpecification(
       pact,
       PactFfi.PactSpecificationValue.PactSpecification_V4
     );
-  console.log('pactffi_with_specification_res');
-  console.log(pactffi_with_specification_res);
+  console.log('with_specification_res');
+  console.log(with_specification_res);
   // Start mock server
-  const pactffi_using_plugin_res = PactFfiLib().pactffi_using_plugin(
+  const using_plugin_res = PactKoffi().usingPlugin(
     pact,
     'protobuf',
     '0.1.17'
   );
-  console.log('pactffi_using_plugin_res', contents);
-  console.log(pactffi_using_plugin_res);
-  console.log('setting pactffi_interaction_contents_res');
+  console.log('using_plugin_res', contents);
+  console.log(using_plugin_res);
+  console.log('setting interaction_contents_res');
 
-  const pactffi_interaction_contents_res =
-    PactFfiLib().pactffi_interaction_contents(
+  const interaction_contents_res =
+    PactKoffi().interactionContents(
       message_pact,
       PactFfi.InteractionPartValue.InteractionPart_Request,
       'application/grpc',
       JSON.stringify(contents)
     );
-  console.log('pactffi_interaction_contents_res');
-  console.log(pactffi_interaction_contents_res);
+  console.log('interaction_contents_res');
+  console.log(interaction_contents_res);
   const mock_server_port =
-    PactFfiLib().pactffi_create_mock_server_for_transport(
+    PactKoffi().createMockServerForTransport(
       pact,
       '0.0.0.0',
       0,
@@ -94,58 +94,58 @@ const PactTestGrpc = async () => {
     );
   console.log('mock_server_port');
   console.log(mock_server_port);
-  PactFfiLib().pactffi_log_message(
+  PactKoffi().logMessage(
     'pact-koffi',
     'INFO',
-    `pactffi_create_mock_server_for_transport: ${mock_server_port}`
+    `create_mock_server_for_transport: ${mock_server_port}`
   );
 
   // This is where we would make our client request and assert the results
 
   // check results and write pact
 
-  const matched = PactFfiLib().pactffi_mock_server_matched(mock_server_port);
-  PactFfiLib().pactffi_log_message(
+  const matched = PactKoffi().mockServerMatched(mock_server_port);
+  PactKoffi().logMessage(
     'pact-koffi',
     'INFO',
-    `pactffi_mock_server_matched: ${matched}`
+    `mock_server_matched: ${matched}`
   );
 
   if (!matched) {
     const mismatches =
-      PactFfiLib().pactffi_mock_server_mismatches(mock_server_port);
+      PactKoffi().mockServerMismatches(mock_server_port);
     console.log('🚨 tests failed, check out the errors below 👇');
     console.log(mismatches);
     console.log(JSON.stringify(JSON.parse(mismatches), null, '\t'));
   } else {
     console.log('✅ tests passed 👌');
     const PACT_FILE_DIR = './pacts';
-    const res_write_pact = PactFfiLib().pactffi_write_pact_file(
+    const res_write_pact = PactKoffi().writePactFile(
       mock_server_port,
       PACT_FILE_DIR,
       0
     );
-    PactFfiLib().pactffi_log_message(
+    PactKoffi().logMessage(
       'pact-koffi',
       'INFO',
-      `pactffi_write_pact_file: ${res_write_pact}`
+      `write_pact_file: ${res_write_pact}`
     );
   }
 
-  const pactffi_cleanup_mock_server_result =
-    PactFfiLib().pactffi_cleanup_mock_server(mock_server_port);
-  PactFfiLib().pactffi_log_message(
+  const cleanup_mock_server_result =
+    PactKoffi().cleanupMockServer(mock_server_port);
+  PactKoffi().logMessage(
     'pact-koffi',
     'INFO',
-    `pactffi_cleanup_mock_server: ${pactffi_cleanup_mock_server_result}`
+    `cleanup_mock_server: ${cleanup_mock_server_result}`
   );
-  PactFfiLib().pactffi_cleanup_plugins(pact);
+  PactKoffi().cleanupPlugins(pact);
   console.log('🧹 Cleaned up Pact processes');
 };
 
 console.log(
   'Hello from Pact Bun FFI - Version',
-  PactFfiLib().pactffi_version()
+  PactKoffi().version()
 );
 
 PactTestGrpc();
