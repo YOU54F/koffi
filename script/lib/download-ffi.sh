@@ -114,7 +114,7 @@ download_ffi "aarch64-unknown-linux-gnu.so.gz" "lib" "linux-arm64/libpact_ffi.so
 # download_ffi "openbsd-x86_64.so.gz" "lib" "openbsd-x64/libpact_ffi.so.gz"
 
 # download_ffi "windows-x86.dll.gz" "" "win32-ia32/pact_ffi.dll.gz"
-download_ffi "x86_64-pc-windows-msvc.dll.gzw" "" "win32-x64/pact_ffi.dll.gz"
+download_ffi "x86_64-pc-windows-msvc.dll.gz" "" "win32-x64/pact_ffi.dll.gz"
 download_ffi "aarch64-pc-windows-msvc.dll.gz" "" "win32-arm64/pact_ffi.dll.gz"
 # Write readme in the ffi folder
 cat << EOF > "$FFI_DIR/README.md"
