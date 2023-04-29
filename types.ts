@@ -738,7 +738,7 @@ export namespace PactFfi {
     export declare function getTlsCaCertificate(): string;
   
     /** /data/input/pact.h#L3043 */
-    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: number): number;
+    export declare function createMockServerForPact(pact: PactFfi.PactHandle, addr_str: string, tls: boolean): number;
   
     /** /data/input/pact.h#L3079 */
     export declare function createMockServerForTransport(pact: PactFfi.PactHandle, addr: string, port: number, transport: string, transport_config: string|null): number;

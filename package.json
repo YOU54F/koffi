@@ -1,7 +1,7 @@
 {
   "scripts": {
     "compile": "tsc",
-    "test": "npm run test:hello && npm run test:http && npm run test:plugin",
+    "test": "npm run test:hello && npm run test:http && npm run test:plugin && npm run test:verifier",
     "test:hello": "ts-node PactKoffi.ts",
     "test:http":"ts-node grpc.test.ts",
     "test:plugin":"ts-node http.test.ts",
